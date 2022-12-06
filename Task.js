@@ -1,33 +1,72 @@
-//getElementsByClassName
-//console.log(document.getElementsByClassName("list-group-item"));
+
+//TraversingTheCode
+
+//parentNode
+ var list=document.querySelector('#items');
+// console.log(list.parentNode.parentNode.parentNode.parentNode);
+// list.parentNode.style.color='blue'
+
+// //parentElement
+// console.log(list.parentElement.parentElement);
+// list.parentElement.style.backgroundColor='yellow';
+
+//childNode
+// console.log(list.childNodes);
+
+// //childElements
+
+// console.log(list.children);
+// list.children[2].style.color='green';
+
+//firstChild
+
+//console.log(list.firstChild);
+
+//firstElementChild
+// console.log(list.firstElementChild);
+// list.firstElementChild.style.backgroundColor='yellow'
+
+//lastChild
+// console.log(list.lastChild);
 
 
-// var lists=document.getElementsByClassName("list-group-item");
-// console.log(lists);
+//lastElementChild
+// console.log(list.lastElementChild);
+// list.lastElementChild.style.backgroundColor='yellow'
+
+//nextSibling
+//console.log(list.nextSibling);
+
+//nextElementSibling
+// console.log(list.nextElementSibling);
+
+//previousSibling
+// console.log(list.previousSibling);
+
+//previousElementSibling
+console.log(list.previousElementSibling);
+list.previousElementSibling.style.backgroundColor='yellow'
+
+var mydiv=document.createElement('div');
+mydiv.setAttribute('title', 'Hello');
+
+var newText=document.createTextNode('Hello! Hello!')
+mydiv.appendChild(newText);
+console.log(mydiv);
+mydiv.style.fontSize='30px'
+var container=document.querySelector("header .container")
+var h1=document.querySelector("header h1");
+
+container.insertBefore(mydiv, h1);
+
+var parentNode=document.getElementById("items");
 
 
-// lists[2].style.backgroundColor='green';
-// for(let c of lists){
-//     c.style.fontWeight='bold';
-// }
+parentNode.innerHTML= '<li>Hello!</li>' + parentNode.innerHTML;
 
-// console.log(document.getElementsByClassName("list-group-item"));
 
-//getElementsByTagName
-// console.log(document.getElementsByTagName('form'));
-// console.log(document.getElementsByTagName('body'));
-// console.log(document.getElementsByTagName('input[0]'));
-// console.log(document.getElementsByTagName('html'));
 
-var items=document.getElementsByTagName('li');
-console.log('items');
-items[0].textContent='123';
 
-for(let i=0;i<items.length;i=i+2){
-    items[i].style.backgroundColor='grey';
-}
-
-items[4].innerText='852';
 
 
 
