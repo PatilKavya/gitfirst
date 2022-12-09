@@ -27,11 +27,11 @@
               let lastName = event.target.userLName.value;
               let mail = event.target.mail.value;
               let tel = event.target.phone.value;
-
-              localStorage.setItem('name',name);
-              localStorage.setItem('lastName',lastName);
-              localStorage.setItem('mail',mail);
-              localStorage.setItem('tel',tel);
+              let object={ name:event.target.userName.value, lastName:event.target.userLName.value, mail:event.target.mail.value, tel:event.target.phone.value};
+              let obj_serialised=JSON.stringify(object);
+              //let obj_deserialised=JSON.per(obj_serialised);
+              localStorage.setItem('object', obj_serialised);
+              
             }
         </script>
     </body>
