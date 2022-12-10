@@ -1,39 +1,24 @@
 <!DOCTYPE html>
-<html>
+  <html>
+
     <header>
-        <h3> Person Details</h3>
+        <h2> Appointment Booking </h2>
     </header>
-
+    
     <body>
-        <h5>Fill the details</h5>
+        <h4>Fill the details</h4>
         <form onsubmit = "saveToLocalStorage(event)">
-            <label>First Name</label><br>
-            <input type="text" name="userName" required /><br><br>
-            <label>Last Name</label><br>
-            <input type="text" name="userLName" required /><br><br>
-            <label>Email</label><br>
-            <input type="email" name="mail" required /><br><br>
-            <label>Phone number</label><br>
-            <input type="tel" name="phone" /><br><br>
-            
+            <label>Full Name:</label><br><br>
+            <input id="name" type="text" name="name" required /><br><br>
+            <label>Email:</label><br><br>
+            <input id="mail" type="email" name="mail" required /><br><br>
             <button> Submit </button>
-
         </form>
+        <ul id="userslist"> </ul>
 
-
-        <script>
-            function saveToLocalStorage(event){
-                event.preventDefault();
-              let name = event.target.userName.value;
-              let lastName = event.target.userLName.value;
-              let mail = event.target.mail.value;
-              let tel = event.target.phone.value;
-              let object={ name:event.target.userName.value, lastName:event.target.userLName.value, mail:event.target.mail.value, tel:event.target.phone.value};
-              let obj_serialised=JSON.stringify(object);
-              //let obj_deserialised=JSON.per(obj_serialised);
-              localStorage.setItem('object', obj_serialised);
-              console.log(details);
-            }
+        <script src="index.js"> 
         </script>
-    </body>
-</html>
+                  
+    </body> 
+     
+    </html>
