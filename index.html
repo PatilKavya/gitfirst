@@ -20,6 +20,7 @@
 
         </form>
 
+
         <script>
             function saveToLocalStorage(event){
                 event.preventDefault();
@@ -31,7 +32,7 @@
               let obj_serialised=JSON.stringify(object);
               //let obj_deserialised=JSON.per(obj_serialised);
               localStorage.setItem('object', obj_serialised);
-              
+              console.log(details);
             }
         </script>
     </body>
