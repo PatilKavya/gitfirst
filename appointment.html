@@ -62,7 +62,7 @@ function showDetailsOnScreen(user) {
               let parentNode=document.getElementById("items");
               let childNodeHTML=`<li id='${user.email}'> ${user.name} - ${user.email} - ${user.number} 
                 <button onclick = deleteUser("${user._id}","${user.email}")> Delete </button>
-                <button onclick = editUserDetails('${user.name}','${user.email}','${user.number}') > Edit Expence </button>
+                <button onclick = editUserDetails('${user._id}','${user.name}','${user.email}',${user.number}) > Edit </button>
             </li>`
                   parentNode.innerHTML = parentNode.innerHTML + childNodeHTML;
                 };
@@ -81,13 +81,20 @@ function showDetailsOnScreen(user) {
                  }
 
                     //editing 
-                    function editUserDetails(name,email,number) {
-                   document.getElementById("amount").value = name;
-                   document.getElementById("email").value = emailn;
-                   document.getElementById("category").value = number;
-
-                   deleteUser(emailn)
-                    }
+                    function editUserDetails(id,name,email,number) {
+                        document.getElementById("name").value=name;
+                   document.getElementById("email").value=email;
+                  document.getElementById("number").value=number;
+                  deleteUser(id,email);
+                        }
+                     
+                
+                // axios.put(`https://crudcrud.com/api/81ef68f12ef34c8bb0dc76923934b0bd/appointment/${id}`,obj)
+                // .then((res)=>{console.log(res)
+                //     deleteUser(id)
+                // })
+                // .catch((err)=>{console.log(err)})
+                
 
                     function removeUserFromScreen(email){
                     let parentNode=document.getElementById("items");
