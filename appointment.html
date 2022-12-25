@@ -61,15 +61,22 @@ function showDetailsOnScreen(user) {
               
               let parentNode=document.getElementById("items");
               let childNodeHTML=`<li id='${user.email}'> ${user.name} - ${user.email} - ${user.number} 
-                <button onclick = deleteUser('${user.email}')> Delete Expence </button>
+                <button onclick = deleteUser("${user._id}","${user.email}")> Delete </button>
                 <button onclick = editUserDetails('${user.name}','${user.email}','${user.number}') > Edit Expence </button>
             </li>`
                   parentNode.innerHTML = parentNode.innerHTML + childNodeHTML;
                 };
 
               //delete useremail
-                 function deleteUser(email){
-                    localStorage.removeItem(email);
+                 function deleteUser(id,email){
+                    axios.delete(`https://crudcrud.com/api/81ef68f12ef34c8bb0dc76923934b0bd/appointment/${id}`)
+                    .then((res)=>{
+                        console.log(res)
+                    })
+                    .catch((err)=>{
+                        console.log(err)
+                    })
+                    //localStorage.removeItem(email);
                     removeUserFromScreen(email)
                  }
 
