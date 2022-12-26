@@ -1,0 +1,124 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+   <script>
+
+
+
+
+
+
+
+// async function 
+
+
+// console.log("person1:shows ticket")
+// console.log("person2:shows ticket")
+
+// const promise1=new Promise((resolve,reject)=>{
+//     setTimeout(()=> 
+//     resolve('ticket'),3000)
+// });
+
+// const promise2 = promise1.then((t)=>{
+//     return new Promise((resolve,reject)=>resolve(t+"popcorn"))
+
+// })
+
+// const promise3=promise2.then((t)=>{
+//     return new Promise((resolve,reject)=>resolve(t+"butter"))
+// })
+
+// const promise4=promise3.then((r)=>{
+//     return new Promise((resolve,reject)=>resolve(r+"coldDrinks"))
+// })
+
+
+// async function preMovie() {
+   
+//     const all=await Promise.all([promise1,promise2,promise3,promise4])
+//     return all
+//  }
+ 
+  
+//  preMovie().then((m)=>console.log(m))
+//  console.log("person4:shows ticket")
+ 
+//  console.log("person5:shows ticket")
+ 
+//posts async
+ const posts = [{title:'post one', body:'this is one',createdAt:new Date().getTime()},{title:'post 2', body:'this is 2',createdAt:new Date().getTime()}];
+ let intervalId=0;
+
+function getposts(){
+new Promise(()=>{
+    clearInterval(intervalId);
+    intervalId = setInterval(() => {
+        let output='';
+        for(let i=0;i<posts.length;i++){
+            output+= `<li id="lil"> ${posts[i].title}-post created at ${((new Date().getTime()-posts[i].createdAt)/1000)} </li>`;
+            document.body.innerHTML=output;
+        }
+    },1000)
+})
+};
+
+function createPost(post){
+ new Promise((resolve,reject) =>
+{
+    setTimeout(()=>{
+posts.push(post);
+const error=false;
+if(!error){
+    resolve();
+}
+else{
+    reject();
+}
+    },2000)
+})
+}
+
+
+
+function deletePost(){
+     new Promise((resolve,reject)=>{
+       setTimeout(()=>{
+        
+         if(posts.length>0){
+            resolve(posts.pop())
+         }
+         else{
+            reject("array is empty")
+         }
+
+       },1000)
+    }) 
+
+}
+
+async function posting(){
+    const get1=await getposts()
+    const crea = await createPost({title:'post three',body:'this post three',createdAt:new Date().getTime()})
+    const del = await deletePost()
+    const get2=await getposts()
+    const del2 = await deletePost()
+    const get3=await getposts()
+    const del3 = await deletePost()
+    const get4=await getposts()
+   
+};
+
+posting().then((res)=>{
+    console.log(res)
+})
+
+
+</script>
+</body>
+
+</html>
