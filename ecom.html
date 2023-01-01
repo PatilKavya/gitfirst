@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E commerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script def src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+ </head>
+ <body style="text-align: center;">
+    <br><br>
+        <div class="container">
+            <div class="row">
+<form onsubmit="saveToTheCrud(event)">
+    <label> Selling Price: </label>
+    <input type="number" name="amount" id="amount" >
+    <label> Product name: </label>
+    <input type="text" name="details" id="datails">
+    <button> Add Product </button>
+</form>
+</div><hr>
+<h4> Products </h4>
+<ul id="items">
+
+</ul>     
+<div class="row">  
+<h5> Total Value Worth Of Product: <label id="demo"> </label> </h5>
+</div> 
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js" >
+        </script>
+    <script>
+
+
+function saveToTheCrud(event){
+    event.preventDefault()
+    const object={price:event.target.amount.value, item:event.target.details.value};
+     
+    axios.post('https://crudcrud.com/api/f0346aed427b4ff683622e78972daf35/ecommerce',object)
+    .then((response)=>{
+        console.log(response.data)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+
+}
+
+window.addEventListener("DOMContentLoaded",() => {
+axios.get('https://crudcrud.com/api/f0346aed427b4ff683622e78972daf35/ecommerce')
+.then((res)=>{
+    console.log(res)
+    for(let i=0;i<res.data.length;i++){
+        showDetailsOnScreen(res.data[i])
+    }
+})
+.catch((err)=>{
+    console.log(err)
+})
+})
+
+
+function showDetailsOnScreen(obj) {
+    let parentNode=document.getElementById('items')
+    let childNodeHTML= `<li id='${obj._id}' > ${obj.price} - ${obj.item} 
+        <button onclick= deleteItem('${obj._id}')> Delete Product </button>" </li>`
+    parentNode.innerHTML=parentNode.innerHTML+childNodeHTML;
+    let p=document.getElementById('demo') 
+    p.innerHTML = 'Rs' + total(parseInt(obj.price))
+}
+
+let y=0;
+
+function total(x){
+
+return y=y+x;
+}
+
+function deleteItem(id){
+    axios.delete(`https://crudcrud.com/api/f0346aed427b4ff683622e78972daf35/ecommerce/${id}`)
+    .then((r)=>{
+        console.log(r)
+    })
+    .catch((er)=>{
+console.log(er)
+    })
+
+    removeFromScreen(id)
+}
+
+
+function removeFromScreen(id){
+    let parent=document.getElementById('items')
+    let child=document.getElementById(`${id}`)
+    if(child){
+        parent.removeChild(child)
+    }
+}
+
+    </script>
+    </body>
+</html>
